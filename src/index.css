@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 50% 3%;
+    --foreground: 220 20% 95%;
+    --card: 225 50% 7%;
+    --card-foreground: 220 20% 95%;
+    --popover: 225 50% 7%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 228 100% 68%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 40% 10%;
+    --secondary-foreground: 220 20% 90%;
+    --muted: 225 30% 12%;
+    --muted-foreground: 220 15% 55%;
+    --accent: 255 100% 68%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 225 30% 15%;
+    --input: 225 30% 15%;
+    --ring: 228 100% 68%;
+    --chart-1: 228 100% 68%;
+    --chart-2: 255 100% 68%;
+    --chart-3: 185 80% 55%;
+    --chart-4: 45 90% 65%;
+    --chart-5: 228 80% 50%;
+    --radius: 0.5rem;
+    --sidebar-background: 225 50% 5%;
+    --sidebar-foreground: 220 20% 90%;
+    --sidebar-primary: 228 100% 68%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 40% 10%;
+    --sidebar-accent-foreground: 220 20% 90%;
+    --sidebar-border: 225 30% 15%;
+    --sidebar-ring: 228 100% 68%;
+
+    --font-heading: 'Inter Tight', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --void: 222 50% 3%;
+    --navy: 228 50% 9%;
+    --electric: 228 100% 68%;
+    --violet: 255 100% 68%;
+    --warning: 45 88% 63%;
+    --cyan: 185 80% 55%;
+    --data: 220 20% 90%;
+  }
+
+  .dark {
+    --background: 222 50% 3%;
+    --foreground: 220 20% 95%;
+    --card: 225 50% 7%;
+    --card-foreground: 220 20% 95%;
+    --popover: 225 50% 7%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 228 100% 68%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 40% 10%;
+    --secondary-foreground: 220 20% 90%;
+    --muted: 225 30% 12%;
+    --muted-foreground: 220 15% 55%;
+    --accent: 255 100% 68%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 225 30% 15%;
+    --input: 225 30% 15%;
+    --ring: 228 100% 68%;
+    --chart-1: 228 100% 68%;
+    --chart-2: 255 100% 68%;
+    --chart-3: 185 80% 55%;
+    --chart-4: 45 90% 65%;
+    --chart-5: 228 80% 50%;
+    --sidebar-background: 225 50% 5%;
+    --sidebar-foreground: 220 20% 90%;
+    --sidebar-primary: 228 100% 68%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 40% 10%;
+    --sidebar-accent-foreground: 220 20% 90%;
+    --sidebar-border: 225 30% 15%;
+    --sidebar-ring: 228 100% 68%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  .font-mono-tech {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Scanning line animation */
+@keyframes scanline {
+  0% { top: -2px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes grid-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-grid-shift {
+  animation: grid-shift 20s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #07090D;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2040;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5B7CFF;
+}
+
+/* Glow effects */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(91, 124, 255, 0.15), 0 0 60px rgba(91, 124, 255, 0.05);
+}
+.glow-violet {
+  box-shadow: 0 0 20px rgba(122, 92, 255, 0.15), 0 0 60px rgba(122, 92, 255, 0.05);
+}
+.glow-blue-strong {
+  box-shadow: 0 0 30px rgba(91, 124, 255, 0.3), 0 0 80px rgba(91, 124, 255, 0.1);
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #5B7CFF 0%, #7A5CFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
