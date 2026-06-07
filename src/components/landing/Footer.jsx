@@ -1,8 +1,7 @@
 import React from 'react';
-import { Zap, Send, Mail } from 'lucide-react';
+import { Zap, Send } from 'lucide-react';
 
 const TELEGRAM_URL = 'https://t.me/EMCinstrumentarii';
-const EMAIL = null;
 
 export default function Footer() {
   return (
@@ -25,7 +24,7 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-warning/60 animate-pulse-glow" />
               <span className="font-mono text-[10px] text-data/25 uppercase tracking-widest">
-                Beta / Early Access
+                Профессиональная лицензия
               </span>
             </div>
           </div>

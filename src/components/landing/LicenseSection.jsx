@@ -2,50 +2,66 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight, Crown } from 'lucide-react';
 import SectionLabel from './SectionLabel';
-import { EngineerModal, LabModal } from './PurchaseModal';
+import { LabModal } from './PurchaseModal';
 
 const plans = [
   {
     id: 'engineer',
-    name: 'Engineer',
-    badge: 'Early Access',
-    price: '1 000 ₽',
+    name: 'ENGINEER',
+    price: '15 000 ₽ / год',
+    description: 'Для индивидуального инженера ЭМС.',
     features: [
-      'Локальная лицензия на 1 ПК',
       'Все калькуляторы ЭМС',
       'Испытания и шаблоны',
       'Справочники и нормы',
-      'AI-помощник',
+      'Учёт оборудования',
       'Журнал работ',
+      'AI-помощник',
       'Офлайн работа',
-      'Обновления 1 год',
+      'Обновления в течение года',
     ],
-    cta: 'Купить Engineer',
-    ctaStyle: 'bg-warning text-void hover:bg-warning/90 hover:shadow-[0_0_30px_rgba(242,201,76,0.2)]',
+    cta: 'Получить доступ',
+    ctaStyle: 'border border-electric/30 text-electric hover:bg-electric/10 hover:border-electric/50',
     highlight: false,
   },
   {
     id: 'lab',
-    name: 'Lab',
-    badge: 'Для лабораторий',
+    name: 'LAB',
+    badge: 'Рекомендуемый выбор',
+    price: 'По запросу',
+    description: 'Для испытательных лабораторий.',
     features: [
       'Всё из Engineer',
-      'Управление оборудованием',
-      'Многопользовательская работа',
-      'Кастомизация шаблонов',
+      'Работа команды инженеров',
+      'Общая база данных оборудования',
+      'Настройка шаблонов',
+      'Обучение сотрудников',
       'Приоритетная поддержка',
-      'Интеграция с системами',
-      'Расширенная аналитика',
-      'Выделенный менеджер',
     ],
-    cta: 'Оставить заявку',
-    ctaStyle: 'border border-cyan/30 text-cyan hover:bg-cyan/10 hover:border-cyan/50',
+    cta: 'Запросить условия',
+    ctaStyle: 'bg-violet text-white hover:bg-violet/90 hover:shadow-[0_0_30px_rgba(122,92,255,0.22)]',
     highlight: true,
+  },
+  {
+    id: 'enterprise',
+    name: 'ENTERPRISE',
+    price: 'Индивидуально',
+    description: 'Для предприятий и испытательных центров.',
+    features: [
+      'Всё из Lab',
+      'Индивидуальная адаптация',
+      'Дополнительные модули по запросу',
+      'Внедрение под задачи предприятия',
+      'Персональные условия сопровождения',
+    ],
+    cta: 'Обсудить внедрение',
+    ctaStyle: 'border border-cyan/30 text-cyan hover:bg-cyan/10 hover:border-cyan/50',
+    highlight: false,
   },
 ];
 
 export default function LicenseSection() {
-  const [modal, setModal] = useState(null); // 'engineer' | 'lab' | null
+  const [modal, setModal] = useState(null); // 'lab' | 'enterprise' | null
 
   return (
     <section id="pricing" className="relative py-24 lg:py-32">
@@ -61,13 +77,13 @@ export default function LicenseSection() {
           transition={{ duration: 0.6 }}
           className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4"
         >
-          Выберите <span className="text-gradient-blue">доступ</span>
+          Выберите формат <span className="text-gradient-blue">лицензирования</span>
         </motion.h2>
         <p className="text-data/40 text-lg mb-16 max-w-2xl">
-          Два тарифа для разных задач — от личного использования до лаборатории
+          От индивидуального инженера до испытательной лаборатории и предприятия.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
+        <div className="grid lg:grid-cols-3 gap-6 max-w-6xl">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -85,17 +101,18 @@ export default function LicenseSection() {
                 plan.highlight ? 'border-violet/20' : 'border-white/[0.06]'
               }`}>
                 <div className="mb-8">
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center gap-3 mb-3 min-h-4">
                     {plan.highlight && <Crown className="w-4 h-4 text-violet" />}
-                    <span className={`font-mono text-[10px] uppercase tracking-widest ${plan.id === 'engineer' ? 'text-warning/60' : 'text-data/40'}`}>
-                      {plan.badge}
-                    </span>
-                  </div>
-                  <div className="flex items-end gap-3 flex-wrap">
-                    <h3 className="font-heading font-black text-3xl text-white">{plan.name}</h3>
-                    {plan.price && (
-                      <span className="font-heading font-bold text-xl text-warning mb-0.5">{plan.price}</span>
+                    {plan.badge && (
+                      <span className="font-mono text-[10px] uppercase tracking-widest text-violet/70">
+                        {plan.badge}
+                      </span>
                     )}
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="font-heading font-black text-3xl text-white">{plan.name}</h3>
+                    <div className={`font-heading font-bold text-2xl ${plan.highlight ? 'text-violet' : 'text-warning'}`}>{plan.price}</div>
+                    <p className="text-data/45 text-sm leading-relaxed">{plan.description}</p>
                   </div>
                 </div>
 
@@ -115,7 +132,7 @@ export default function LicenseSection() {
                     rel="noopener noreferrer"
                     className={`group inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 font-heading font-bold text-sm rounded-sm transition-all duration-300 ${plan.ctaStyle}`}
                   >
-                    Получить доступ
+                    {plan.cta}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </a>
                 ) : (
@@ -145,8 +162,8 @@ export default function LicenseSection() {
         </motion.p>
       </div>
 
-      {modal === 'engineer' && <EngineerModal onClose={() => setModal(null)} />}
-      {modal === 'lab' && <LabModal onClose={() => setModal(null)} />}
+      {modal === 'lab' && <LabModal onClose={() => setModal(null)} planName="Lab" />}
+      {modal === 'enterprise' && <LabModal onClose={() => setModal(null)} planName="Enterprise" />}
     </section>
   );
 }

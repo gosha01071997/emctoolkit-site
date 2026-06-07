@@ -1,16 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, FlaskConical, BookOpen, NotebookPen, Wrench, Bot, WifiOff } from 'lucide-react';
+import { Calculator, FlaskConical, BookOpen, NotebookPen, Wrench, Bot, WifiOff, GraduationCap } from 'lucide-react';
 import SectionLabel from './SectionLabel';
 
 const features = [
-  { icon: Calculator, title: 'Калькуляторы ЭМС', desc: 'Быстрые расчёты помех, затухания, импеданса и других параметров', color: 'electric' },
+  { icon: Calculator, title: 'Инженерные калькуляторы ЭМС', desc: 'Быстрые расчёты помех, затухания, импеданса и других параметров для ежедневной инженерной работы.', color: 'electric' },
   { icon: FlaskConical, title: 'Испытания и шаблоны', desc: 'Готовые структуры испытаний, этапы, заметки, статусы и контроль выполнения для работы по методикам ЭМС.', color: 'electric' },
-  { icon: BookOpen, title: 'Справочники и нормы', desc: 'Единая база нормативных документов с быстрым поиском', color: 'violet' },
-  { icon: NotebookPen, title: 'Журнал работ', desc: 'Автоматическое ведение лога всех испытаний и расчётов', color: 'violet' },
-  { icon: Wrench, title: 'Управление оборудованием', desc: 'Учёт приборов, калибровки, состояние и расположение', color: 'cyan' },
-  { icon: Bot, title: 'AI-помощник', desc: 'Интеллектуальный ассистент для анализа данных и рекомендаций', color: 'cyan' },
-  { icon: WifiOff, title: 'Офлайн работа', desc: 'Полная функциональность без подключения к интернету', color: 'warning' },
+  { icon: BookOpen, title: 'Справочники и нормы', desc: 'Единая база нормативных документов, терминов, единиц и зависимостей с быстрым поиском.', color: 'violet' },
+  { icon: Wrench, title: 'Учёт оборудования', desc: 'Учёт приборов, калибровки, состояние и расположение оборудования лаборатории.', color: 'cyan' },
+  { icon: GraduationCap, title: 'Обучение сотрудников', desc: 'Сопровождение внедрения и обучение команды при лабораторном формате лицензирования.', color: 'violet' },
+  { icon: Bot, title: 'AI-помощник', desc: 'Дополнительный ассистент для подсказок по данным и инженерным вопросам.', color: 'cyan' },
+  { icon: NotebookPen, title: 'Журнал работ', desc: 'Автоматическое ведение лога испытаний, расчётов и рабочих заметок.', color: 'warning' },
+  { icon: WifiOff, title: 'Офлайн работа', desc: 'Полная функциональность без подключения к интернету.', color: 'warning' },
 ];
 
 const colorConfig = {
@@ -37,7 +38,7 @@ export default function SolutionSection() {
           <span className="text-gradient-blue">ЭМС лаборатории</span>
         </motion.h2>
         <p className="text-data/40 text-lg mb-16 max-w-2xl">
-          Все необходимые функции в единой десктопной системе
+          Инженерные расчёты, испытания, нормы и учёт оборудования в единой десктопной системе
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

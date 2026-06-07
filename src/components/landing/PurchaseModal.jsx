@@ -4,7 +4,7 @@ import { X, CheckCircle2, Send, ArrowRight } from 'lucide-react';
 
 const TELEGRAM_BOT_URL = 'https://t.me/EMCinstrumentarii';
 
-function FormInput({ label, id, type = 'text', placeholder, value, onChange, required }) {
+function FormInput({ label, id, type = 'text', placeholder, value, onChange, required = false }) {
   return (
     <div>
       <label htmlFor={id} className="block font-mono text-[10px] text-data/50 uppercase tracking-widest mb-1.5">
@@ -46,7 +46,7 @@ export function EngineerModal({ onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await sendToTelegram({ '📦 Тариф': 'Engineer (1000₽)', '👤 Имя': form.name, '📧 Email': form.email, '✈️ Telegram': form.telegram, '💬 Комментарий': form.comment });
+    await sendToTelegram({ '📦 Тариф': 'Engineer (15 000 ₽ / год)', '👤 Имя': form.name, '📧 Email': form.email, '✈️ Telegram': form.telegram, '💬 Комментарий': form.comment });
     setLoading(false);
     setSubmitted(true);
   };
@@ -65,7 +65,7 @@ export function EngineerModal({ onClose }) {
           </motion.div>
         ) : (
           <motion.form key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onSubmit={handleSubmit} className="space-y-4">
-            <p className="text-data/50 text-sm leading-relaxed pb-1">Оставьте данные для покупки Engineer версии. Мы свяжемся с вами и отправим инструкцию по оплате.</p>
+            <p className="text-data/50 text-sm leading-relaxed pb-1">Оставьте данные для получения Engineer лицензии. Мы свяжемся с вами и отправим инструкцию по оплате.</p>
             <FormInput label="Имя" id="eng-name" placeholder="Иван Петров" value={form.name} onChange={set('name')} required />
             <FormInput label="Email" id="eng-email" type="email" placeholder="ivan@lab.ru" value={form.email} onChange={set('email')} required />
             <FormInput label="Telegram" id="eng-tg" placeholder="@username" value={form.telegram} onChange={set('telegram')} />
@@ -90,7 +90,7 @@ export function EngineerModal({ onClose }) {
   );
 }
 
-export function LabModal({ onClose }) {
+export function LabModal({ onClose, planName = 'Lab' }) {
   const [form, setForm] = useState({ name: '', company: '', email: '', telegram: '', seats: '', comment: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -100,13 +100,13 @@ export function LabModal({ onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await sendToTelegram({ '📦 Тариф': 'Lab', '👤 Имя': form.name, '🏭 Компания': form.company, '📧 Email': form.email, '✈️ Telegram': form.telegram, '👥 Мест': form.seats, '💬 Комментарий': form.comment });
+    await sendToTelegram({ '📦 Тариф': planName, '👤 Имя': form.name, '🏭 Компания': form.company, '📧 Email': form.email, '✈️ Telegram': form.telegram, '👥 Мест': form.seats, '💬 Комментарий': form.comment });
     setLoading(false);
     setSubmitted(true);
   };
 
   return (
-    <ModalShell onClose={onClose} title="Заявка на EMC Toolkit Lab">
+    <ModalShell onClose={onClose} title={`Заявка на EMC Toolkit ${planName}`}>
       <AnimatePresence mode="wait">
         {submitted ? (
           <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col items-center text-center py-8 gap-4">
@@ -114,12 +114,12 @@ export function LabModal({ onClose }) {
               <CheckCircle2 className="w-7 h-7 text-violet" />
             </div>
             <h3 className="font-heading font-bold text-xl text-white">Заявка отправлена</h3>
-            <p className="text-data/50 text-sm leading-relaxed max-w-xs">Мы свяжемся с вами для обсуждения Lab версии и условий для вашей лаборатории.</p>
+            <p className="text-data/50 text-sm leading-relaxed max-w-xs">Мы свяжемся с вами для обсуждения формата лицензирования и условий для вашей организации.</p>
             <button onClick={onClose} className="mt-4 px-6 py-2.5 border border-white/[0.08] text-data/60 font-mono text-xs rounded-sm hover:border-white/20 hover:text-white transition-all">Закрыть</button>
           </motion.div>
         ) : (
           <motion.form key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onSubmit={handleSubmit} className="space-y-4">
-            <p className="text-data/50 text-sm leading-relaxed pb-1">Оставьте данные для обсуждения Lab версии.</p>
+            <p className="text-data/50 text-sm leading-relaxed pb-1">Оставьте данные для обсуждения лицензии и условий внедрения.</p>
             <FormInput label="Имя" id="lab-name" placeholder="Иван Петров" value={form.name} onChange={set('name')} required />
             <FormInput label="Компания / Лаборатория" id="lab-company" placeholder="ООО Испытательный центр" value={form.company} onChange={set('company')} required />
             <FormInput label="Email" id="lab-email" type="email" placeholder="ivan@lab.ru" value={form.email} onChange={set('email')} required />
