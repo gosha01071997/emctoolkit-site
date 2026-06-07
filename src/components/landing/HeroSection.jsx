@@ -1,8 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, Smartphone } from 'lucide-react';
+import { ArrowRight, ChevronDown, Check, Smartphone } from 'lucide-react';
 
 const HERO_MOCKUP = 'https://media.base44.com/images/public/69feffc36e31b5fb5f019912/2b42c1006_generated_1d8da414.png';
+
+const TRUST_POINTS = [
+  'Калькуляторы ЭМС',
+  'Справочник стандартов',
+  'Учёт оборудования',
+  'Журнал испытаний',
+  'Обучение сотрудников',
+  'Офлайн работа',
+];
 
 export default function HeroSection() {
   return (
@@ -33,16 +42,26 @@ export default function HeroSection() {
 
             {/* Headline */}
             <h1 className="font-heading font-black text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] leading-[1.05] tracking-tight text-white mb-6">
-              <span className="text-gradient-blue">ЭМС Инструментарий</span>{' '}
-              для EMC/EMI инженеров
+              <span className="text-gradient-blue">EMC Toolkit</span>
+              <span className="block mt-2 text-white">Инженерная платформа для ЭМС испытаний и лабораторий</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-data/60 text-lg leading-relaxed mb-10 max-w-lg">
-              ЭМС Инструментарий — офлайн-программа для EMC/EMI инженеров и ЭМС лабораторий.
+            <p className="text-data/60 text-lg leading-relaxed mb-6 max-w-lg">
+              EMC Toolkit — офлайн-программа для EMC/EMI инженеров и ЭМС лабораторий.
               Расчёты ЭМС, подготовка испытаний, журнал работ, управление оборудованием,
               EMC/EMI справочники и AI-помощник в одной системе.
             </p>
+
+            {/* Trust points */}
+            <div className="mb-10 flex max-w-xl flex-wrap gap-x-4 gap-y-2">
+              {TRUST_POINTS.map((point) => (
+                <div key={point} className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-data/45">
+                  <Check className="h-3 w-3 text-electric/45" strokeWidth={1.6} />
+                  <span>{point}</span>
+                </div>
+              ))}
+            </div>
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
