@@ -4,13 +4,14 @@ import ScanLine from '../components/landing/ScanLine';
 import Navbar from '../components/landing/Navbar';
 import HeroSection from '../components/landing/HeroSection';
 import ProblemSection from '../components/landing/ProblemSection';
-import SolutionSection from '../components/landing/SolutionSection';
+import WorkflowSection from '../components/landing/WorkflowSection';
 import ShowcaseSection from '../components/landing/ShowcaseSection';
-import AdvantagesSection from '../components/landing/AdvantagesSection';
+import ProofSection from '../components/landing/ProofSection';
+import RoleBenefitsSection from '../components/landing/RoleBenefitsSection';
+import ImplementationSection from '../components/landing/ImplementationSection';
 import LicenseSection from '../components/landing/LicenseSection';
-import DemoSection from '../components/landing/DemoSection';
-import CTASection from '../components/landing/CTASection';
 import SEOSection from '../components/landing/SEOSection';
+import CTASection from '../components/landing/CTASection';
 import Footer from '../components/landing/Footer';
 
 export default function Landing() {
@@ -19,15 +20,18 @@ export default function Landing() {
       <GridBackground />
       <ScanLine />
       <Navbar />
-      <HeroSection />
-      <ProblemSection />
-      <SolutionSection />
-      <ShowcaseSection />
-      <AdvantagesSection />
-      <DemoSection />
-      <LicenseSection />
-      <SEOSection />
-      <CTASection />
+      <main>
+        <HeroSection />
+        <ProblemSection />
+        <WorkflowSection />
+        <ShowcaseSection />
+        <ProofSection />
+        <RoleBenefitsSection />
+        <ImplementationSection />
+        <LicenseSection />
+        <SEOSection />
+        <CTASection />
+      </main>
       <Footer />
     </div>
   );

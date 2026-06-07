@@ -5,9 +5,9 @@ import { Zap, Menu, X, Send } from 'lucide-react';
 const TELEGRAM_URL = 'https://t.me/EMCinstrumentarii';
 
 const navLinks = [
-  { label: 'Возможности', href: '#features' },
-  { label: 'Приложение', href: '#showcase' },
-  { label: 'Лицензии', href: '#pricing' },
+  { label: 'Workflow', href: '#workflow' },
+  { label: 'Capabilities', href: '#capabilities' },
+  { label: 'Licensing', href: '#pricing' },
 ];
 
 export default function Navbar() {
@@ -68,7 +68,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="ml-2 px-5 py-2 bg-warning/10 border border-warning/30 text-warning font-heading font-semibold text-sm rounded-sm hover:bg-warning/20 hover:border-warning/50 transition-all"
           >
-            Оставить заявку
+            Request demo
           </a>
         </div>
 
@@ -115,7 +115,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen(false)}
             className="block w-full text-center px-5 py-2.5 bg-warning/10 border border-warning/30 text-warning font-heading font-semibold text-sm rounded-sm"
           >
-            Оставить заявку
+            Request demo
           </a>
         </motion.div>
       )}
