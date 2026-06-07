@@ -9,13 +9,18 @@ const plans = [
     id: 'engineer',
     name: 'ENGINEER',
     price: '15 000 ₽ / год',
-    description: 'Для индивидуального EMC/EMI инженера, которому нужны личные EMC calculations, стандарты, подготовка испытаний и рабочий журнал.',
+    description: 'Для индивидуального инженера ЭМС.',
     features: [
-      'Один пользователь',
-      'Личная инженерная среда для EMC test preparation',
-      'Офлайн работа и обновления в течение года',
+      'Все калькуляторы ЭМС',
+      'Испытания и шаблоны',
+      'Справочники и нормы',
+      'Учёт оборудования',
+      'Журнал работ',
+      'AI-помощник',
+      'Офлайн работа',
+      'Обновления в течение года',
     ],
-    cta: 'Запросить Engineer',
+    cta: 'Получить доступ',
     ctaStyle: 'border border-electric/30 text-electric hover:bg-electric/10 hover:border-electric/50',
     highlight: false,
   },
@@ -24,13 +29,16 @@ const plans = [
     name: 'LAB',
     badge: 'Рекомендуемый выбор',
     price: 'По запросу',
-    description: 'Для испытательной EMC laboratory, где несколько инженеров должны работать по единому процессу и общей базе оборудования.',
+    description: 'Для испытательных лабораторий.',
     features: [
-      'Командная работа лаборатории',
-      'Общая база оборудования и настроек',
-      'Настройка шаблонов, onboarding и приоритетная поддержка',
+      'Всё из Engineer',
+      'Работа команды инженеров',
+      'Общая база данных оборудования',
+      'Настройка шаблонов',
+      'Обучение сотрудников',
+      'Приоритетная поддержка',
     ],
-    cta: 'Request laboratory demonstration',
+    cta: 'Запросить условия',
     ctaStyle: 'bg-violet text-white hover:bg-violet/90 hover:shadow-[0_0_30px_rgba(122,92,255,0.22)]',
     highlight: true,
   },
@@ -38,13 +46,15 @@ const plans = [
     id: 'enterprise',
     name: 'ENTERPRISE',
     price: 'Индивидуально',
-    description: 'Для предприятий, испытательных центров и технических дирекций с требованиями к адаптации и масштабированию процесса.',
+    description: 'Для предприятий и испытательных центров.',
     features: [
-      'Enterprise deployment для нескольких команд',
-      'Адаптация под внутренние процессы и модули',
-      'Индивидуальные условия внедрения и сопровождения',
+      'Всё из Lab',
+      'Индивидуальная адаптация',
+      'Дополнительные модули по запросу',
+      'Внедрение под задачи предприятия',
+      'Персональные условия сопровождения',
     ],
-    cta: 'Discuss implementation',
+    cta: 'Обсудить внедрение',
     ctaStyle: 'border border-cyan/30 text-cyan hover:bg-cyan/10 hover:border-cyan/50',
     highlight: false,
   },
@@ -58,7 +68,7 @@ export default function LicenseSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-violet/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <SectionLabel number="08" label="Licensing" />
+        <SectionLabel number="05" label="Лицензии" />
         
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -67,10 +77,10 @@ export default function LicenseSection() {
           transition={{ duration: 0.6 }}
           className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4"
         >
-          Какая лицензия подходит <span className="text-gradient-blue">вашей лаборатории</span>
+          Выберите формат <span className="text-gradient-blue">лицензирования</span>
         </motion.h2>
         <p className="text-data/40 text-lg mb-16 max-w-2xl">
-          Engineer, Lab и Enterprise различаются не повторяющимся списком функций, а масштабом внедрения, числом пользователей и уровнем адаптации.
+          От индивидуального инженера до испытательной лаборатории и предприятия.
         </p>
 
         <div className="grid lg:grid-cols-3 gap-6 max-w-6xl">
