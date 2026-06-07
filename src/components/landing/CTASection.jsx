@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Send } from 'lucide-react';
-import { EngineerModal, LabModal } from './PurchaseModal';
+import { LabModal } from './PurchaseModal';
 
 const TELEGRAM_URL = 'https://t.me/EMCinstrumentarii';
 
 export default function CTASection() {
-  const [modal, setModal] = useState(null); // 'engineer' | 'lab' | null
+  const [modal, setModal] = useState(null); // 'lab' | null
 
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative py-24 lg:py-32" aria-labelledby="final-cta-title">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-electric/20 to-transparent" />
       
       {/* Background glow */}
@@ -25,15 +25,14 @@ export default function CTASection() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-6">
-            Начните использовать{' '}
-            <span className="text-gradient-blue">EMC Toolkit</span>
+          <h2 id="final-cta-title" className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-6">
+            Запросите демонстрацию <span className="text-gradient-blue">для вашей лаборатории</span>
           </h2>
           <p className="text-data/50 text-lg mb-3">
-            Переведите вашу ЭМС лабораторию на новый уровень эффективности
+            Покажем EMC Toolkit на сценариях вашей команды: EMC calculations, EMI testing, стандарты, оборудование, журнал и внедрение.
           </p>
           <p className="text-data/35 text-sm font-mono mb-10">
-            Поддержка и обновления через Telegram
+            Демонстрация поможет выбрать Engineer, Lab или Enterprise и понять процесс внедрения
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -43,14 +42,14 @@ export default function CTASection() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 px-8 py-4 bg-warning text-void font-heading font-bold text-sm rounded-sm hover:bg-warning/90 transition-all hover:shadow-[0_0_30px_rgba(242,201,76,0.2)]"
             >
-              Получить доступ
+              Request laboratory demonstration
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </a>
             <button
               onClick={() => setModal('lab')}
               className="group inline-flex items-center gap-2 px-8 py-4 border border-violet/30 text-violet font-heading font-semibold text-sm rounded-sm hover:bg-violet/10 hover:border-violet/50 transition-all"
             >
-              Оставить заявку на Lab
+              Discuss implementation
               <Send className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
@@ -59,7 +58,7 @@ export default function CTASection() {
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-6 py-4 border border-white/[0.06] rounded-sm bg-navy/30">
             <div className="text-left">
               <p className="font-mono text-[10px] text-data/30 uppercase tracking-widest mb-0.5">Поддержка</p>
-              <p className="text-data/60 text-sm">Поддержка и обновления через Telegram</p>
+              <p className="text-data/60 text-sm">Демонстрация поможет выбрать Engineer, Lab или Enterprise и понять процесс внедрения</p>
             </div>
             <a
               href={TELEGRAM_URL}
@@ -74,7 +73,6 @@ export default function CTASection() {
         </motion.div>
       </div>
 
-      {modal === 'engineer' && <EngineerModal onClose={() => setModal(null)} />}
       {modal === 'lab' && <LabModal onClose={() => setModal(null)} />}
     </section>
   );

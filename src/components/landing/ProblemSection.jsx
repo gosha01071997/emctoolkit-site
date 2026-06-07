@@ -5,19 +5,19 @@ import SectionLabel from './SectionLabel';
 import CornerBrackets from './CornerBrackets';
 
 const problems = [
-  { icon: FileSpreadsheet, title: 'Excel расчёты', desc: 'Формулы ломаются, версии теряются, данные не связаны' },
-  { icon: FolderOpen, title: 'Разрозненные документы', desc: 'Протоколы, нормы и шаблоны в разных папках и форматах' },
-  { icon: AlertTriangle, title: 'Ошибки в испытаниях', desc: 'Ручной ввод и отсутствие валидации приводят к сбоям' },
-  { icon: Clock, title: 'Потеря времени', desc: 'Оформление отчётов занимает больше времени, чем сами испытания' },
-  { icon: Search, title: 'Ручной поиск норм', desc: 'Нужная информация разбросана по десяткам документов' },
-  { icon: Layers, title: 'Нет единой системы', desc: 'Калькуляторы, журналы, справочники — всё по отдельности' },
+  { icon: FileSpreadsheet, title: 'Excel files', desc: 'Формулы, версии и результаты испытаний расходятся между локальными таблицами' },
+  { icon: FolderOpen, title: 'Scattered standards', desc: 'CISPR, IEC, MIL-STD, протоколы и шаблоны хранятся в разных папках и форматах' },
+  { icon: AlertTriangle, title: 'Manual calculations', desc: 'Ручные EMC calculations повышают риск ошибок в уровнях, единицах и исходных данных' },
+  { icon: Clock, title: 'Equipment tracking issues', desc: 'Калибровка, статус и расположение приборов не всегда видны до начала испытаний' },
+  { icon: Search, title: 'Inconsistent test preparation', desc: 'Подготовка EMC/EMI testing зависит от личного опыта инженера и набора локальных файлов' },
+  { icon: Layers, title: 'Knowledge fragmentation', desc: 'Рабочие заметки, журналы и методические решения не формируют общую базу лаборатории' },
 ];
 
 export default function ProblemSection() {
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative py-24 lg:py-32" aria-labelledby="problems-title">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <SectionLabel number="01" label="Проблема" />
+        <SectionLabel number="02" label="Laboratory problems" />
         
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -26,10 +26,10 @@ export default function ProblemSection() {
           transition={{ duration: 0.6 }}
           className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4"
         >
-          Почему инженеры <span className="text-gradient-blue">теряют время</span>
+          <span id="problems-title">Что мешает EMC/EMI лаборатории работать предсказуемо</span>
         </motion.h2>
         <p className="text-data/40 text-lg mb-16 max-w-2xl">
-          Типичные проблемы ЭМС лабораторий, которые решает EMC Toolkit
+          Before state типичной EMC laboratory: Excel files, scattered standards, manual calculations, equipment tracking issues и inconsistent test preparation.
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
