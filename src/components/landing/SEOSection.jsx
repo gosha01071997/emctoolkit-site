@@ -3,79 +3,45 @@ import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import SectionLabel from './SectionLabel';
 
-const capabilityGroups = [
-  {
-    title: 'EMC calculations',
-    terms: 'dB, dBm, dBµV, cable loss, impedance, BCI preparation',
-    text: 'EMC Toolkit includes engineering calculators for daily EMC calculations and EMI software workflows used by EMC engineers.',
-  },
-  {
-    title: 'EMI testing and emissions',
-    terms: 'Conducted emissions, radiated emissions, CE, RE',
-    text: 'The platform supports preparation of conducted emissions and radiated emissions tasks with structured test context.',
-  },
-  {
-    title: 'Immunity testing',
-    terms: 'BCI, CS, RS, immunity testing',
-    text: 'Engineers can organize immunity testing scenarios including BCI, conducted susceptibility and radiated susceptibility references.',
-  },
-  {
-    title: 'EMC standards',
-    terms: 'CISPR, IEC, MIL-STD, ГОСТ РВ',
-    text: 'The standards environment centralizes working references for EMC standards used during EMC test preparation.',
-  },
-  {
-    title: 'Equipment calibration',
-    terms: 'Laboratory equipment, calibration, status, location',
-    text: 'EMC Toolkit helps laboratories maintain equipment records, calibration awareness and readiness for testing work.',
-  },
-  {
-    title: 'Laboratory workflow',
-    terms: 'EMC laboratory management, journal, protocols, onboarding',
-    text: 'The software connects calculations, standards, equipment and work journal into one EMC laboratory workflow.',
-  },
+const capabilities = [
+  { title: 'Инженерные калькуляторы ЭМС', sub: 'Ежедневные EMC/EMI расчёты' },
+  { title: 'dB / dBm / dBμV расчёты', sub: 'Базовые инженерные вычисления' },
+  { title: 'Потери кабеля', sub: 'RG-58, LMR-400 и другие типы кабелей' },
+  { title: 'BCI / Инжекция тока', sub: 'Подготовка и расчёты токовой инжекции' },
+  { title: 'Испытания и шаблоны', sub: 'Структуры испытаний, этапы и статусы' },
+  { title: 'CE / RE испытания', sub: 'Кондуктивные и радиационные помехи' },
+  { title: 'CS / RS испытания', sub: 'Устойчивость к воздействию ЭМ-помех' },
+  { title: 'Справочники и нормы', sub: 'ГОСТ, IEC, MIL-STD и рабочие зависимости' },
+  { title: 'ГОСТ РВ 20.57.306', sub: 'Работа по военным EMC стандартам' },
+  { title: 'Учёт оборудования', sub: 'Калибровки, статусы и парк приборов' },
+  { title: 'Журнал EMC испытаний', sub: 'История, результаты и заметки' },
+  { title: 'AI-помощник EMC инженера', sub: 'Дополнительные подсказки для инженера' },
 ];
 
 const faqs = [
   {
-    q: 'What is EMC Toolkit?',
-    a: 'EMC Toolkit (ЭМС Инструментарий) is offline EMC software and EMI software for EMC/EMI laboratories. It combines EMC calculations, EMC test preparation, standards references, equipment management, laboratory journal workflows and an engineering assistant in one desktop application.',
+    q: 'Что такое ЭМС Инструментарий?',
+    a: 'ЭМС Инструментарий (EMC Toolkit) — это офлайн ПО для EMC/EMI инженеров и испытательных ЭМС лабораторий. Программа объединяет инженерные калькуляторы, шаблоны испытаний на электромагнитную совместимость, справочники и нормы, учёт оборудования, журнал работ и AI-помощника в одном приложении.',
   },
   {
-    q: 'Who uses EMC Toolkit?',
-    a: 'EMC Toolkit is used by EMC laboratory managers, chief engineers, technical directors, EMC/EMI engineers, certification laboratories and testing laboratories that need a structured engineering environment for EMC laboratory management.',
+    q: 'Для кого подходит EMC Toolkit?',
+    a: 'EMC software предназначено для EMC инженеров и специалистов по электромагнитной совместимости, сотрудников испытательных ЭМС лабораторий, экспертов, работающих с ГОСТ РВ, IEC 61000, MIL-STD-461, а также команд, которые регулярно проводят испытания ЭМС и оформляют результаты.',
   },
   {
-    q: 'What problems does EMC Toolkit solve?',
-    a: 'The product reduces dependence on Excel files, scattered standards, manual calculations, inconsistent test preparation, disconnected equipment tracking and undocumented knowledge transfer between engineers.',
+    q: 'Работает ли программа офлайн?',
+    a: 'Да. ЭМС Инструментарий — полностью офлайн-приложение. Интернет не требуется для работы калькуляторов, подготовки испытаний ЭМС, справочников и журнала. Это обеспечивает независимость от соединения в полевых условиях и в закрытых ЭМС лабораториях.',
   },
   {
-    q: 'How is deployment performed?',
-    a: 'Deployment starts with a laboratory demonstration and license selection. After that, the desktop application is installed, configured for the laboratory workflow, introduced to engineers through onboarding and supported during operation.',
+    q: 'Какие расчёты поддерживает EMC Toolkit?',
+    a: 'Программа включает расчёты dB/dBm/dBμV, потерь кабеля, параметров BCI, уровней CE/RE и CS/RS, а также расчёты по типовым методикам испытаний на электромагнитную совместимость. Набор калькуляторов для EMC инженеров регулярно расширяется.',
   },
   {
-    q: 'Can the software work offline?',
-    a: 'Yes. EMC Toolkit is designed as an offline desktop application. Core workflows such as EMC calculations, standards lookup, test preparation, equipment records and the work journal do not require continuous internet access.',
+    q: 'Можно ли использовать программу в лаборатории?',
+    a: 'Да. Версия Lab специально разработана для ЭМС лабораторий: ориентирована на работу команды инженеров, общую базу оборудования, настройку шаблонов испытаний ЭМС, обучение сотрудников и приоритетную поддержку.',
   },
   {
-    q: 'How are updates delivered?',
-    a: 'Updates are delivered within the selected license terms. The current commercial process accepts requests through the form and Telegram, and support provides update guidance for the installed environment.',
-  },
-  {
-    q: 'Can laboratories customize the system?',
-    a: 'Yes. Lab and Enterprise implementation can include configuration of templates, equipment structure, workflow conventions and onboarding materials to match the laboratory process.',
-  },
-  {
-    q: 'What EMC standards are supported?',
-    a: 'EMC Toolkit is built around working references for EMC standards and terminology including CISPR, IEC, MIL-STD and ГОСТ РВ contexts. Exact standards coverage and internal laboratory references are discussed during demonstration and configuration.',
-  },
-  {
-    q: 'What EMC calculations are available?',
-    a: 'The platform includes EMC calculations such as dB, dBm, dBµV conversions, cable loss, BCI preparation and other calculator workflows for EMC engineers. The calculator set can expand through updates.',
-  },
-  {
-    q: 'What support is included?',
-    a: 'Support includes implementation guidance, answers to product questions, update assistance and team onboarding depending on the selected Engineer, Lab or Enterprise license.',
+    q: 'Чем отличается Engineer версия от Lab версии?',
+    a: 'Engineer — годовая лицензия для индивидуального EMC инженера. Включает калькуляторы ЭМС, шаблоны испытаний, справочники и нормы, учёт оборудования, журнал работ, AI-помощника, офлайн работу и обновления в течение года. Lab — формат для ЭМС лаборатории: работа команды инженеров, общая база оборудования, настройка шаблонов, обучение сотрудников и приоритетная поддержка.',
   },
 ];
 
@@ -86,13 +52,11 @@ function FAQItem({ item, index }) {
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.04 }}
+      transition={{ duration: 0.4, delay: index * 0.07 }}
       className="border border-white/[0.06] rounded-sm overflow-hidden"
     >
       <button
-        type="button"
         onClick={() => setOpen(!open)}
-        aria-expanded={open}
         className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-white/[0.02] transition-colors"
       >
         <span className="font-heading font-semibold text-sm text-data/80">{item.q}</span>
@@ -111,49 +75,73 @@ function FAQItem({ item, index }) {
 
 export default function SEOSection() {
   return (
-    <section className="relative py-24 lg:py-32" aria-labelledby="capabilities-title">
+    <section className="relative py-24 lg:py-32">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-electric/10 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <SectionLabel number="09" label="EMC / EMI capabilities" />
+        {/* "Who it's for" block */}
+        <SectionLabel number="06" label="Аудитория" />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-8 max-w-3xl"
+          className="max-w-3xl mb-20"
         >
-          <h2 id="capabilities-title" className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4">
-            EMC / EMI capabilities for search engines and <span className="text-gradient-blue">AI retrieval</span>
+          <h2 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight mb-4">
+            Для кого создан{' '}
+            <span className="text-gradient-blue">ЭМС Инструментарий</span>
           </h2>
           <p className="text-data/45 text-base leading-relaxed">
-            EMC Toolkit is EMC laboratory software for EMC calculations, EMI testing, EMC standards access,
-            equipment calibration tracking and laboratory workflow management. It is used by EMC engineers,
-            certification laboratories and technical teams working with CISPR, IEC and MIL-STD contexts.
+            ЭМС Инструментарий создан для инженеров EMC/EMI, испытательных лабораторий,
+            специалистов по электромагнитной совместимости и команд, которые проводят испытания
+            по ЭМС, работают с оборудованием, оформляют результаты и используют инженерные
+            расчёты в ежедневной практике.
           </p>
         </motion.div>
 
-        <div id="capabilities" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-24">
-          {capabilityGroups.map((cap, i) => (
+        {/* Capabilities grid */}
+        <SectionLabel number="07" label="Возможности EMC/EMI" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-6"
+        >
+          <h2 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight mb-4">
+            Поддерживаемые{' '}
+            <span className="text-gradient-blue">EMC/EMI</span>{' '}
+            задачи и стандарты
+          </h2>
+          <p className="text-data/45 text-base leading-relaxed max-w-3xl">
+            EMC Toolkit (ЭМС Инструментарий) поддерживает инженерные расчёты, подготовку испытаний,
+            справочники и нормы, учёт оборудования, ведение журналов и работу EMC/EMI лабораторий.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-24">
+          {capabilities.map((cap, i) => (
             <motion.article
-              key={cap.title}
+              key={i}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.04 }}
-              className="group relative rounded-sm border border-white/[0.06] bg-navy/40 backdrop-blur-sm px-5 py-5 hover:border-electric/20 hover:bg-electric/[0.04] transition-all duration-300"
+              className="group relative rounded-sm border border-white/[0.06] bg-navy/40 backdrop-blur-sm px-5 py-4 hover:border-electric/20 hover:bg-electric/[0.04] transition-all duration-300"
             >
               <div className="absolute inset-0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                 style={{ boxShadow: '0 0 20px rgba(91,124,255,0.06)' }} />
-              <h3 className="font-heading font-bold text-base text-data/90 mb-2 leading-snug">{cap.title}</h3>
-              <p className="font-mono text-[11px] text-electric/50 leading-relaxed mb-3">{cap.terms}</p>
-              <p className="text-data/45 text-sm leading-relaxed">{cap.text}</p>
+              <h3 className="font-heading font-bold text-sm text-data/85 mb-1 leading-snug">{cap.title}</h3>
+              <p className="font-mono text-[11px] text-data/35 leading-relaxed">{cap.sub}</p>
             </motion.article>
           ))}
         </div>
 
-        <SectionLabel number="10" label="FAQ" />
+        {/* FAQ */}
+        <SectionLabel number="08" label="Вопросы и ответы" />
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -162,12 +150,12 @@ export default function SEOSection() {
           transition={{ duration: 0.6 }}
           className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight mb-10"
         >
-          Frequently asked B2B questions
+          Часто задаваемые вопросы
         </motion.h2>
 
         <div className="max-w-3xl space-y-2">
           {faqs.map((item, i) => (
-            <FAQItem key={item.q} item={item} index={i} />
+            <FAQItem key={i} item={item} index={i} />
           ))}
         </div>
       </div>
