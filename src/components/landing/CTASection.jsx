@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText, Mail, Send } from 'lucide-react';
-import { EngineerModal, LabModal } from './PurchaseModal';
+import { ArrowRight, Send } from 'lucide-react';
+import { LabModal } from './PurchaseModal';
 
-const EMAIL = 'goshakondratev777@gmail.com';
-const TELEGRAM_HANDLE = '@EMCinstrumentarii';
-const TELEGRAM_URL = 'https://t.me/EMCinstrumentarii';
 
 export default function CTASection() {
-  const [modal, setModal] = useState(null); // 'engineer' | 'lab' | null
+  const [modal, setModal] = useState(null); // 'lab' | null
 
   return (
     <section className="relative py-24 lg:py-32">
@@ -34,11 +31,7 @@ export default function CTASection() {
           <p className="text-data/50 text-lg mb-3">
             Переведите вашу ЭМС лабораторию на новый уровень эффективности
           </p>
-          <p className="text-data/35 text-sm font-mono mb-10">
-            Поддержка и обновления через Telegram
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="flex flex-wrap justify-center gap-4">
             <a
               href="https://t.me/EMCinstrumentarii"
               target="_blank"
@@ -56,68 +49,9 @@ export default function CTASection() {
               <Send className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
-
-          {/* Contact block */}
-          <div className="relative left-1/2 w-[min(100%,calc(100vw-3rem))] max-w-6xl -translate-x-1/2 text-left overflow-hidden rounded-sm border border-white/[0.06] bg-navy/35 shadow-[0_0_60px_rgba(80,118,255,0.06)]">
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric/30 to-transparent" />
-            <div className="absolute -right-24 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full bg-violet/10 blur-3xl" />
-            <div className="relative flex flex-col gap-5 px-5 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:px-8">
-              <div className="lg:max-w-[360px] lg:shrink-0">
-                <p className="font-mono text-[10px] text-data/30 uppercase tracking-widest mb-2">Контакты</p>
-                <p className="text-data/70 text-sm leading-relaxed">
-                  По вопросам демонстрации, лицензирования<br className="hidden sm:block" />
-                  и внедрения EMC Toolkit.
-                </p>
-              </div>
-
-              <div className="flex min-w-0 flex-1 flex-row items-center gap-3 overflow-x-auto pb-1 sm:justify-end sm:gap-4 sm:pb-0">
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="group/contact inline-flex shrink-0 items-center gap-3 rounded-sm border border-white/[0.08] bg-white/[0.02] px-4 py-3 text-data/75 transition-all hover:border-electric/30 hover:bg-electric/10 hover:text-electric"
-                  style={{ whiteSpace: 'nowrap' }}
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-electric/20 bg-electric/10 text-electric">
-                    <Mail className="w-4 h-4" />
-                  </span>
-                  <span className="flex flex-col gap-0.5">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-data/35 group-hover/contact:text-electric/60">Email</span>
-                    <span className="font-mono text-sm leading-none">{EMAIL}</span>
-                  </span>
-                </a>
-
-                <a
-                  href={TELEGRAM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/contact inline-flex shrink-0 items-center gap-3 rounded-sm border border-electric/30 bg-electric/[0.04] px-4 py-3 text-electric transition-all hover:border-electric/50 hover:bg-electric/10 hover:shadow-[0_0_24px_rgba(68,214,255,0.12)]"
-                  style={{ whiteSpace: 'nowrap' }}
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-electric/25 bg-electric/10">
-                    <Send className="w-4 h-4" />
-                  </span>
-                  <span className="flex flex-col gap-0.5">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-electric/55">Telegram</span>
-                    <span className="font-mono text-sm leading-none">{TELEGRAM_HANDLE}</span>
-                  </span>
-                </a>
-
-                <button
-                  onClick={() => setModal('lab')}
-                  className="group/contact inline-flex shrink-0 items-center gap-3 rounded-sm border border-violet/30 bg-violet/[0.04] px-4 py-3 text-violet transition-all hover:border-violet/50 hover:bg-violet/10 hover:shadow-[0_0_24px_rgba(139,92,246,0.12)]"
-                  style={{ whiteSpace: 'nowrap' }}
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-violet/25 bg-violet/10">
-                    <FileText className="w-4 h-4" />
-                  </span>
-                  <span className="font-heading text-sm font-bold">Оставить заявку</span>
-                </button>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
 
-      {modal === 'engineer' && <EngineerModal onClose={() => setModal(null)} />}
       {modal === 'lab' && <LabModal onClose={() => setModal(null)} />}
     </section>
   );
