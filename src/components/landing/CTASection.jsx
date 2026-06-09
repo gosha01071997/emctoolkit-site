@@ -58,37 +58,58 @@ export default function CTASection() {
           </div>
 
           {/* Contact block */}
-          <div className="relative left-1/2 w-[min(100%,calc(100vw-3rem))] max-w-5xl -translate-x-1/2 text-left px-5 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-7 border border-white/[0.06] rounded-sm bg-navy/30">
-            <div className="flex flex-col xl:flex-row xl:items-stretch xl:justify-between gap-6 lg:gap-7">
-              <div className="flex flex-col justify-center xl:max-w-[310px]">
-                <p className="font-mono text-[10px] text-data/30 uppercase tracking-widest mb-3">Контакты</p>
+          <div className="relative left-1/2 w-[min(100%,calc(100vw-3rem))] max-w-6xl -translate-x-1/2 text-left overflow-hidden rounded-sm border border-white/[0.06] bg-navy/35 shadow-[0_0_60px_rgba(80,118,255,0.06)]">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric/30 to-transparent" />
+            <div className="absolute -right-24 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full bg-violet/10 blur-3xl" />
+            <div className="relative flex flex-col gap-5 px-5 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:px-8">
+              <div className="lg:max-w-[360px] lg:shrink-0">
+                <p className="font-mono text-[10px] text-data/30 uppercase tracking-widest mb-2">Контакты</p>
                 <p className="text-data/70 text-sm leading-relaxed">
-                  По вопросам демонстрации, лицензий и внедрения EMC Toolkit для лабораторий.
+                  По вопросам демонстрации, лицензирования<br className="hidden sm:block" />
+                  и внедрения EMC Toolkit.
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4 xl:flex-1">
+
+              <div className="flex min-w-0 flex-1 flex-row items-center gap-3 overflow-x-auto pb-1 sm:justify-end sm:gap-4 sm:pb-0">
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="group/contact inline-flex min-w-0 min-h-[74px] items-center justify-center gap-3 px-5 py-4 border border-white/[0.08] text-data/70 font-mono text-xs rounded-sm hover:text-electric hover:bg-electric/10 hover:border-electric/30 transition-all"
+                  className="group/contact inline-flex shrink-0 items-center gap-3 rounded-sm border border-white/[0.08] bg-white/[0.02] px-4 py-3 text-data/75 transition-all hover:border-electric/30 hover:bg-electric/10 hover:text-electric"
+                  style={{ whiteSpace: 'nowrap' }}
                 >
-                  <Mail className="w-4 h-4 shrink-0" />
-                  <span className="min-w-0 text-center leading-relaxed break-words">Email: {EMAIL}</span>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-electric/20 bg-electric/10 text-electric">
+                    <Mail className="w-4 h-4" />
+                  </span>
+                  <span className="flex flex-col gap-0.5">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-data/35 group-hover/contact:text-electric/60">Email</span>
+                    <span className="font-mono text-sm leading-none">{EMAIL}</span>
+                  </span>
                 </a>
+
                 <a
                   href={TELEGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/contact inline-flex min-w-0 min-h-[74px] items-center justify-center gap-3 px-5 py-4 border border-electric/30 text-electric font-mono text-xs rounded-sm hover:bg-electric/10 hover:border-electric/50 transition-all"
+                  className="group/contact inline-flex shrink-0 items-center gap-3 rounded-sm border border-electric/30 bg-electric/[0.04] px-4 py-3 text-electric transition-all hover:border-electric/50 hover:bg-electric/10 hover:shadow-[0_0_24px_rgba(68,214,255,0.12)]"
+                  style={{ whiteSpace: 'nowrap' }}
                 >
-                  <Send className="w-4 h-4 shrink-0" />
-                  <span className="min-w-0 text-center leading-relaxed break-words">Telegram: {TELEGRAM_HANDLE}</span>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-electric/25 bg-electric/10">
+                    <Send className="w-4 h-4" />
+                  </span>
+                  <span className="flex flex-col gap-0.5">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-electric/55">Telegram</span>
+                    <span className="font-mono text-sm leading-none">{TELEGRAM_HANDLE}</span>
+                  </span>
                 </a>
+
                 <button
                   onClick={() => setModal('lab')}
-                  className="group/contact inline-flex min-w-0 min-h-[74px] items-center justify-center gap-3 px-5 py-4 border border-violet/30 text-violet font-mono text-xs rounded-sm hover:bg-violet/10 hover:border-violet/50 transition-all"
+                  className="group/contact inline-flex shrink-0 items-center gap-3 rounded-sm border border-violet/30 bg-violet/[0.04] px-4 py-3 text-violet transition-all hover:border-violet/50 hover:bg-violet/10 hover:shadow-[0_0_24px_rgba(139,92,246,0.12)]"
+                  style={{ whiteSpace: 'nowrap' }}
                 >
-                  <FileText className="w-4 h-4 shrink-0" />
-                  <span className="min-w-0 text-center leading-relaxed break-words">Оставить заявку</span>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-violet/25 bg-violet/10">
+                    <FileText className="w-4 h-4" />
+                  </span>
+                  <span className="font-heading text-sm font-bold">Оставить заявку</span>
                 </button>
               </div>
             </div>
