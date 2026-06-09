@@ -72,7 +72,7 @@ export default function CTASection() {
                   className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-white/[0.08] text-data/70 font-mono text-xs rounded-sm hover:text-electric hover:bg-electric/10 hover:border-electric/30 transition-all"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                  {EMAIL}
+                  Email: {EMAIL}
                 </a>
                 <a
                   href={TELEGRAM_URL}
@@ -81,7 +81,7 @@ export default function CTASection() {
                   className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-electric/30 text-electric font-mono text-xs rounded-sm hover:bg-electric/10 hover:border-electric/50 transition-all"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  {TELEGRAM_HANDLE}
+                  Telegram: {TELEGRAM_HANDLE}
                 </a>
                 <button
                   onClick={() => setModal('lab')}
