@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, Send, ArrowRight } from 'lucide-react';
 
 const TELEGRAM_BOT_URL = 'https://t.me/EMCinstrumentarii';
+const CONTACT_EMAIL = 'goshakondratev777@gmail.com';
+const FORM_SUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
 function FormInput({ label, id, type = 'text', placeholder, value, onChange, required = false }) {
   return (
@@ -21,6 +23,28 @@ function FormInput({ label, id, type = 'text', placeholder, value, onChange, req
       />
     </div>
   );
+}
+
+async function sendLabRequestToEmail(data) {
+  const res = await fetch(FORM_SUBMIT_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      _subject: 'Заявка на EMC Toolkit Lab',
+      _template: 'table',
+      _captcha: 'false',
+      ...data,
+    }),
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to send Lab request');
+  }
+
+  return res.json();
 }
 
 async function sendToTelegram(data) {
@@ -94,15 +118,31 @@ export function LabModal({ onClose, planName = 'Lab' }) {
   const [form, setForm] = useState({ name: '', company: '', email: '', telegram: '', seats: '', comment: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const set = (field) => (e) => setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await sendToTelegram({ '📦 Тариф': planName, '👤 Имя': form.name, '🏭 Компания': form.company, '📧 Email': form.email, '✈️ Telegram': form.telegram, '👥 Мест': form.seats, '💬 Комментарий': form.comment });
-    setLoading(false);
-    setSubmitted(true);
+    setError('');
+
+    try {
+      await sendLabRequestToEmail({
+        'Тариф': planName,
+        'Имя': form.name,
+        'Компания / Лаборатория': form.company,
+        'Email': form.email,
+        'Telegram': form.telegram,
+        'Количество рабочих мест': form.seats,
+        'Комментарий': form.comment,
+      });
+      setSubmitted(true);
+    } catch {
+      setError('Не удалось отправить заявку. Попробуйте ещё раз или напишите нам на email.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -114,7 +154,7 @@ export function LabModal({ onClose, planName = 'Lab' }) {
               <CheckCircle2 className="w-7 h-7 text-violet" />
             </div>
             <h3 className="font-heading font-bold text-xl text-white">Заявка отправлена</h3>
-            <p className="text-data/50 text-sm leading-relaxed max-w-xs">Мы свяжемся с вами для обсуждения формата лицензирования и условий для вашей организации.</p>
+            <p className="text-data/50 text-sm leading-relaxed max-w-xs">Заявка успешно отправлена. Мы свяжемся с вами в ближайшее время.</p>
             <button onClick={onClose} className="mt-4 px-6 py-2.5 border border-white/[0.08] text-data/60 font-mono text-xs rounded-sm hover:border-white/20 hover:text-white transition-all">Закрыть</button>
           </motion.div>
         ) : (
@@ -130,6 +170,7 @@ export function LabModal({ onClose, planName = 'Lab' }) {
               <textarea id="lab-comment" placeholder="Расскажите о ваших задачах..." value={form.comment} onChange={set('comment')} rows={3}
                 className="w-full px-3 py-2.5 bg-void/60 border border-white/[0.08] rounded-sm text-white text-sm placeholder-data/30 focus:outline-none focus:border-violet/40 transition-all font-mono resize-none" />
             </div>
+            {error && <p className="text-warning text-xs font-mono">{error}</p>}
             <div className="pt-2 flex gap-3">
               <button type="submit" disabled={loading}
                 className="group flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 border border-cyan/30 text-cyan font-heading font-bold text-sm rounded-sm hover:bg-cyan/10 hover:border-cyan/50 transition-all disabled:opacity-60">

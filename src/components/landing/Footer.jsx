@@ -46,7 +46,7 @@ export default function Footer() {
                 className="inline-flex items-center gap-2 text-data/50 hover:text-electric transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span className="font-mono text-xs">{EMAIL}</span>
+                <span className="font-mono text-xs">Email: {EMAIL}</span>
               </a>
               <a
                 href={TELEGRAM_URL}
@@ -55,7 +55,7 @@ export default function Footer() {
                 className="inline-flex items-center gap-2 text-data/50 hover:text-electric transition-colors"
               >
                 <Send className="w-4 h-4" />
-                <span className="font-mono text-xs">{TELEGRAM_HANDLE}</span>
+                <span className="font-mono text-xs">Telegram: {TELEGRAM_HANDLE}</span>
               </a>
               <button
                 onClick={() => setModal('lab')}
