@@ -1,9 +1,14 @@
-import React from 'react';
-import { Zap, Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { FileText, Mail, Send, Zap } from 'lucide-react';
+import { LabModal } from './PurchaseModal';
 
+const EMAIL = 'goshakondratev777@gmail.com';
+const TELEGRAM_HANDLE = '@EMCinstrumentarii';
 const TELEGRAM_URL = 'https://t.me/EMCinstrumentarii';
 
 export default function Footer() {
+  const [modal, setModal] = useState(null);
+
   return (
     <footer className="relative border-t border-white/[0.04] bg-void/80">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
@@ -29,17 +34,37 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-            <a
-              href={TELEGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-data/40 hover:text-electric transition-colors"
-            >
-              <Send className="w-4 h-4" />
-              <span className="font-mono text-xs uppercase tracking-wider">Telegram</span>
-            </a>
+          {/* Contacts */}
+          <div className="w-full md:w-auto md:max-w-xl px-5 py-4 border border-white/[0.06] rounded-sm bg-navy/30">
+            <p className="font-mono text-[10px] text-data/30 uppercase tracking-widest mb-2">Контакты</p>
+            <p className="text-data/55 text-sm leading-relaxed mb-4">
+              По вопросам демонстрации, лицензий и внедрения EMC Toolkit для лабораторий.
+            </p>
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
+              <a
+                href={`mailto:${EMAIL}`}
+                className="inline-flex items-center gap-2 text-data/50 hover:text-electric transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                <span className="font-mono text-xs">{EMAIL}</span>
+              </a>
+              <a
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-data/50 hover:text-electric transition-colors"
+              >
+                <Send className="w-4 h-4" />
+                <span className="font-mono text-xs">{TELEGRAM_HANDLE}</span>
+              </a>
+              <button
+                onClick={() => setModal('lab')}
+                className="inline-flex items-center gap-2 text-data/50 hover:text-violet transition-colors"
+              >
+                <FileText className="w-4 h-4" />
+                <span className="font-mono text-xs">Оставить заявку на сайте</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -53,6 +78,7 @@ export default function Footer() {
           </span>
         </div>
       </div>
+      {modal === 'lab' && <LabModal onClose={() => setModal(null)} />}
     </footer>
   );
 }

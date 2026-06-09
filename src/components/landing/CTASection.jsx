@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Send } from 'lucide-react';
+import { ArrowRight, FileText, Mail, Send } from 'lucide-react';
 import { EngineerModal, LabModal } from './PurchaseModal';
 
+const EMAIL = 'goshakondratev777@gmail.com';
+const TELEGRAM_HANDLE = '@EMCinstrumentarii';
 const TELEGRAM_URL = 'https://t.me/EMCinstrumentarii';
 
 export default function CTASection() {
@@ -55,21 +57,41 @@ export default function CTASection() {
             </button>
           </div>
 
-          {/* Telegram block */}
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-6 py-4 border border-white/[0.06] rounded-sm bg-navy/30">
-            <div className="text-left">
-              <p className="font-mono text-[10px] text-data/30 uppercase tracking-widest mb-0.5">Поддержка</p>
-              <p className="text-data/60 text-sm">Поддержка и обновления через Telegram</p>
+          {/* Contact block */}
+          <div className="w-full text-left px-6 py-5 border border-white/[0.06] rounded-sm bg-navy/30">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+              <div>
+                <p className="font-mono text-[10px] text-data/30 uppercase tracking-widest mb-2">Контакты</p>
+                <p className="text-data/70 text-sm leading-relaxed">
+                  По вопросам демонстрации, лицензий и внедрения EMC Toolkit для лабораторий.
+                </p>
+              </div>
+              <div className="grid sm:grid-cols-3 gap-3 lg:min-w-[520px]">
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-white/[0.08] text-data/70 font-mono text-xs rounded-sm hover:text-electric hover:bg-electric/10 hover:border-electric/30 transition-all"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  {EMAIL}
+                </a>
+                <a
+                  href={TELEGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-electric/30 text-electric font-mono text-xs rounded-sm hover:bg-electric/10 hover:border-electric/50 transition-all"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  {TELEGRAM_HANDLE}
+                </a>
+                <button
+                  onClick={() => setModal('lab')}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-violet/30 text-violet font-mono text-xs rounded-sm hover:bg-violet/10 hover:border-violet/50 transition-all"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  Оставить заявку
+                </button>
+              </div>
             </div>
-            <a
-              href={TELEGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 border border-electric/30 text-electric font-mono text-xs rounded-sm hover:bg-electric/10 hover:border-electric/50 transition-all"
-            >
-              <Send className="w-3.5 h-3.5" />
-              Перейти в Telegram
-            </a>
           </div>
         </motion.div>
       </div>
